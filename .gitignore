@@ -9,3 +9,5 @@ out
 gen
 Gemfile.lock
 Gemfile
+_site
+.jekyll-cache
