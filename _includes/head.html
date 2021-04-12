@@ -1,0 +1,68 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <!-- 设置变量 -->
+    {% assign page_is_article = false %}
+    {% if page.layout == "post" %}
+        {% assign page_is_article = true %}
+    {% endif%}
+    {% assign page_type = "" %}
+    {% if page_is_article == true %}
+        {% assign page_type = "article" %}
+    {% else %}
+        {% assign page_type = "website" %}
+    {% endif %}
+
+
+    {% assign page_title = "" %}
+    {% if page.draft %}
+        {% assign page_title = page_title | append: "[DRAFT] "%}
+    {% endif %}
+
+    {%if page.title %}
+        {% assign page_title = page_title | append: site.title | append: " | " | append:page.title %}
+    {% else %}
+        {% assign page_title = site.title %}
+    {% endif %}
+    {% assign page_description = "" %}
+    {% if page.draft %}
+        {% assign page_description = page_description | append: "[DRAFT] "%}
+    {% endif %}
+    {% if page.blurd %}
+        {% assign page_description = page_description | append: page.blurd %}
+    {% else %}
+        {% assign page_description = site.description %}
+    {% endif%}
+
+    {% assign page_image = "" %}
+    {% if page.og_image %}
+        {% assign page_image = site.url | append: page.og_image %}
+    {% else %}
+        {% assign page_image = site.og_image | prepend: site.baseurl | prepend: site.url %}
+    {% endif %}
+
+    {% assign page_url = page.url | replace: "index.html","" | replace: ".html","" | prepend: site.baseurl | prepend: site.url %}
+
+    <!-- 预设全局mate -->
+    <title>{{ page_title }}}</title>
+    <meta name="title" content="{{ page_title }}">
+    <meta name="description" content="{{ page_description }}">
+    <meta property="og:site_name" content="{{ page_title }}">
+    <meta property="og:type" content="{{ page_type }}">
+    <meta property="og:image" content="{{ page_image }}">
+    <meta property="og:url" content="{{ page_url }}"/>
+    <meta property="og:title" content="{{ page_title }}"/>
+    <meta property="og:description" content="{{ page_description }}"/>
+
+    {% assign main_css =  "assets/css/main.css" | absolute_url %}
+    {% assign favicon = "/favicon.ico" | absolute_url  %}
+
+
+    <link rel="stylesheet" href="{{ main_css }}"/>
+    <link rel="canonical" href="{{ page_url }}"/>
+    <link rel="shortcut icon" href="{{ favicon }}" type="image/x-icon"/>
+
+
+</head>

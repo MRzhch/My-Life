@@ -1,1 +1,28 @@
-theme: jekyll-theme-leap-day
+title: 生活的琐碎
+description: >-
+  你好，世界
+baseurl: ""
+url: "http://www.zazv.top"
+og_image: /asserts/images/image.jpeg
+
+header:
+  pages:
+    - name: 首页
+      slug: /
+    - name: 吃饭的家伙
+      slug: /
+      target: work.html
+    - name: 闲来无事
+      slug: /
+      target: book.html
+
+
+
+
+
+
+
+sass:
+  style: :compressed
+plugins:
+  - jekyll-feed

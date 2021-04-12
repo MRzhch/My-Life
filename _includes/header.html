@@ -1,0 +1,25 @@
+<header class="site-header">
+    <div class="wrapper">
+        {% assign home_url = "" | prepend: site.baseurl | prepend: site.url %}
+        {% assign home_title_img = "assets/images/home_title_img.png" | absolute_url %}
+        <a class="site-title" href="{{ home_url }}">
+            <img src="{{ home_title_img }}" alt="{{ site.title }}">
+        </a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon"></a>
+            <div class="menu">
+                {% for page in site.header.pages %}
+                {% if page.slug and page.slug != "" and page.slug != nil %}
+                {% assign page_link = page.slug %}
+                {% else %}
+                {% assign page_link = "/" | append: page.target | downcase %}
+                {% endif %}
+                {% assign page_link = page_link | absolute_url %}
+                <a class="page-link" href="{{ page_link }}">
+                    {{ page.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </nav>
+    </div>
+</header>
